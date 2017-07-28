@@ -1,6 +1,6 @@
 type chrome
 
-external getAuthToken : 'a Js.t -> (chrome -> string -> unit [@bs.this]) -> unit = "getAuthToken" [@@bs.scope "chrome", "identity"] [@@bs.val]
+external getAuthToken : 'a Js.t -> (string -> unit) -> unit = "getAuthToken" [@@bs.scope "chrome", "identity"] [@@bs.val]
 
 type window
 external window : window = "window" [@@bs.val]
