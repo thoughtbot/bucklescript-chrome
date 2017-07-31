@@ -8,5 +8,12 @@ let testGetAuthToken () = getAuthToken
     (fun v ->
        Js.log v)
 
-let () = onload window (fun () -> testGetAuthToken ())
+let testGetProfileUserInfo = getProfileUserInfo (fun userInfo ->
+    Js.log userInfo##email
+  )
 
+let testRemoveCachedAuthToken = removeCachedAuthToken [%bs.obj { token = "token" } ] (fun () ->
+    Js.log "Success"
+  )
+
+let () = onload window (fun () -> testGetAuthToken ())
