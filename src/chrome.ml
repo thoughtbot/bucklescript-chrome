@@ -40,6 +40,23 @@ external mkRmCachedTokenOptions : token:string -> unit -> rmCachedTokenOptions =
 
 external removeCachedAuthToken : rmCachedTokenOptions -> (unit -> unit) -> unit = "removeCachedAuthToken" [@@bs.scope "chrome", "identity"] [@@bs.val]
 
+(* chrome.identity.launchWebAuthFlow *)
+
+class type _webAuthFlowOptions = object
+  method url : string
+  method interactive : Js.boolean
+end [@bs]
+
+type webAuthFlowOptions = _webAuthFlowOptions Js.t
+external mkWebFlowOptions : url:string -> ?interactive:Js.boolean -> unit -> webAuthFlowOptions = "" [@@bs.obj]
+
+external launchWebAuthFlow : webAuthFlowOptions -> (string Js.null -> unit -> unit) -> unit = "launchWebAuthFlow" [@@bs.scope "chrome", "identity"] [@@bs.val]
+
+(* chrome.identity.getRedirectURL *)
+external getRedirectURL : string Js.null -> string = "getRedirectURL" [@@bs.scope "chrome", "identity"] [@@bs.val]
+
+(* TODO: Remove me *)
+
 type window
 external window : window = "window" [@@bs.val]
 external onload : window -> (unit -> unit) -> unit = "onload" [@@bs.set]
