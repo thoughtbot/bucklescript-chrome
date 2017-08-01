@@ -1,4 +1,5 @@
 open Chrome
+open Chrome.Identity
 
 let testGetAuthToken () = getAuthToken
     (mkAuthOptions
@@ -25,5 +26,9 @@ let testLaunchWebAuthFlow = launchWebAuthFlow
        | None -> Js.log "No url returned!")
 
 let testGetRedirectURL = getRedirectURL (Js.Null.from_opt (Some "path"))
+
+let testOnSignInChanged = OnSignInChanged.addListener (fun accountInfo signedIn ->
+    Js.log signedIn |> (fun _ -> Js.log accountInfo##id)
+  )
 
 let () = onload window (fun () -> testGetAuthToken ())
