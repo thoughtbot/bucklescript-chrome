@@ -2,7 +2,8 @@
   "name": "bucklescript-chrome",
   "version": "0.1.0",
   "sources": [
-    "src"
+    "src",
+    "examples"
   ],
   "bs-dependencies" : [
       // add your bs-dependencies here 

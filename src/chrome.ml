@@ -54,16 +54,12 @@ module Identity = struct
   external launchWebAuthFlow : webAuthFlowOptions -> (string Js.null -> unit -> unit) -> unit = "launchWebAuthFlow" [@@bs.scope "chrome", "identity"] [@@bs.val]
 
   (* chrome.identity.getRedirectURL *)
+
   external getRedirectURL : string Js.null -> string = "getRedirectURL" [@@bs.scope "chrome", "identity"] [@@bs.val]
 
   (* chrome.identity.onSignInChanged.addListener *)
+
   module OnSignInChanged = struct
     external addListener : (accountInfo -> Js.boolean -> unit) -> unit = "addListener" [@@bs.scope "chrome", "identity", "onSignInChanged"] [@@bs.val]
   end
 end
-
-(* TODO: Remove me *)
-
-type window
-external window : window = "window" [@@bs.val]
-external onload : window -> (unit -> unit) -> unit = "onload" [@@bs.set]

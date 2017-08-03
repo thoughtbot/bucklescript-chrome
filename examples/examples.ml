@@ -1,4 +1,3 @@
-open Chrome
 open Chrome.Identity
 
 let testGetAuthToken () = getAuthToken
@@ -10,12 +9,10 @@ let testGetAuthToken () = getAuthToken
        Js.log v)
 
 let testGetProfileUserInfo = getProfileUserInfo (fun userInfo ->
-    Js.log userInfo##email
-  )
+    Js.log userInfo##email)
 
 let testRemoveCachedAuthToken = removeCachedAuthToken [%bs.obj { token = "token" } ] (fun () ->
-    Js.log "Success"
-  )
+    Js.log "Success")
 
 let testLaunchWebAuthFlow = launchWebAuthFlow
     (mkWebFlowOptions
@@ -28,7 +25,4 @@ let testLaunchWebAuthFlow = launchWebAuthFlow
 let testGetRedirectURL = getRedirectURL (Js.Null.from_opt (Some "path"))
 
 let testOnSignInChanged = OnSignInChanged.addListener (fun accountInfo signedIn ->
-    Js.log signedIn |> (fun _ -> Js.log accountInfo##id)
-  )
-
-let () = onload window (fun () -> testGetAuthToken ())
+    Js.log signedIn |> (fun _ -> Js.log accountInfo##id))
