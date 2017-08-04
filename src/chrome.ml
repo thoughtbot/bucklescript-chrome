@@ -17,7 +17,7 @@ module Identity = struct
   type getAuthTokenOptions = _getAuthTokenOptions Js.t
   external mkAuthOptions : ?interactive:Js.boolean -> ?scopes:string list -> ?account:accountInfo -> unit -> getAuthTokenOptions = "" [@@bs.obj]
 
-  external getAuthToken : getAuthTokenOptions -> (string -> unit) -> unit = "getAuthToken" [@@bs.scope "chrome", "identity"] [@@bs.val]
+  external getAuthToken : getAuthTokenOptions -> (string -> 'a) -> unit = "getAuthToken" [@@bs.scope "chrome", "identity"] [@@bs.val]
 
   (* chrome.identity.getProfileUserInfo *)
 
@@ -28,7 +28,7 @@ module Identity = struct
 
   type profileUserInfo = _profileUserInfo Js.t
 
-  external getProfileUserInfo : (profileUserInfo -> unit) -> unit = "getProfileUserInfo" [@@bs.scope "chrome", "identity"] [@@bs.val]
+  external getProfileUserInfo : (profileUserInfo -> 'a) -> unit = "getProfileUserInfo" [@@bs.scope "chrome", "identity"] [@@bs.val]
 
   (* chrome.identity.removeCachedAuthToken *)
 
@@ -39,7 +39,7 @@ module Identity = struct
   type rmCachedTokenOptions = _rmCachedToken Js.t
   external mkRmCachedTokenOptions : token:string -> unit -> rmCachedTokenOptions = "" [@@bs.obj]
 
-  external removeCachedAuthToken : rmCachedTokenOptions -> (unit -> unit) -> unit = "removeCachedAuthToken" [@@bs.scope "chrome", "identity"] [@@bs.val]
+  external removeCachedAuthToken : rmCachedTokenOptions -> (unit -> 'a) -> unit = "removeCachedAuthToken" [@@bs.scope "chrome", "identity"] [@@bs.val]
 
   (* chrome.identity.launchWebAuthFlow *)
 
@@ -51,7 +51,7 @@ module Identity = struct
   type webAuthFlowOptions = _webAuthFlowOptions Js.t
   external mkWebFlowOptions : url:string -> ?interactive:Js.boolean -> unit -> webAuthFlowOptions = "" [@@bs.obj]
 
-  external launchWebAuthFlow : webAuthFlowOptions -> (string Js.null -> unit -> unit) -> unit = "launchWebAuthFlow" [@@bs.scope "chrome", "identity"] [@@bs.val]
+  external launchWebAuthFlow : webAuthFlowOptions -> (string Js.null -> unit -> 'a) -> unit = "launchWebAuthFlow" [@@bs.scope "chrome", "identity"] [@@bs.val]
 
   (* chrome.identity.getRedirectURL *)
 
@@ -60,6 +60,6 @@ module Identity = struct
   (* chrome.identity.onSignInChanged.addListener *)
 
   module OnSignInChanged = struct
-    external addListener : (accountInfo -> Js.boolean -> unit) -> unit = "addListener" [@@bs.scope "chrome", "identity", "onSignInChanged"] [@@bs.val]
+    external addListener : (accountInfo -> Js.boolean -> 'a) -> unit = "addListener" [@@bs.scope "chrome", "identity", "onSignInChanged"] [@@bs.val]
   end
 end
