@@ -5,7 +5,9 @@
     "src",
     "examples"
   ],
+  "bsc-flags": ["-bs-super-errors"],
   "bs-dependencies" : [
       // add your bs-dependencies here 
-  ]
+  ],
+  "refmt": 3
 }
